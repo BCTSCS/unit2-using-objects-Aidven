@@ -38,7 +38,7 @@ public Website(String domainName, String topDomain, int numPeople){
     // Method to fetch data 
     public void fetchData(String api)
  {
-        String urlString=toString()+ "/"+api+"/";
+        String urlString=toString()+ "/"+api;
 
         try {
             // Create the URL from the provided string
@@ -71,7 +71,7 @@ public Website(String domainName, String topDomain, int numPeople){
     public String toString()
     {
         
-        String res =  "https://" + domain + "." + topLevelDomain;
+        String res =  "http://" + domain + "." + topLevelDomain;
        // res += " has " + numUsers + " users";
         
         return res;
@@ -79,6 +79,11 @@ public Website(String domainName, String topDomain, int numPeople){
 
     // Main method to test the API call
     public static void main(String[] args) {
+
+        //NEVER USE ACCESS MODIFIER INSIDE METHODS
+        //HERE EVERY VARIABLE IS LOCAL
+        //LOCAL VARIABLE USE TYPE ONLY 
+        //REFERENCE VARIABLES CLASS TYPE
         Website website = new Website("randomuser", "me"); // Create an instance of Website
         website.fetchData("api"); // Call the instance method
         
@@ -87,6 +92,9 @@ public Website(String domainName, String topDomain, int numPeople){
         
         Website website3 = new Website("google", "com", 100000000);
         System.out.println(website3);
+
+        Website website4 = new Website("ip-api", "com");
+        
     }
 }
 
