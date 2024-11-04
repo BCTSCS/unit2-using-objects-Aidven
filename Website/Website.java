@@ -8,13 +8,15 @@ public class Website {
  // Put your code here
     private String domain;
     private String topLevelDomain;
-    private int numUsers;
+    private long numUsers;
+    private GeoLocation geoLocation;
 
 //Default constructor
 public Website(){
-    domain = "codehs";
+    domain = "google";
     topLevelDomain = "com";
-    numUsers = 0;
+    numUsers = 4300000000L;
+    geoLocation = new GeoLocation(41.2219,95.8608);
     }
 
 // Specify website URL
@@ -23,18 +25,21 @@ public Website(String domainName, String topDomain){
     domain = domainName;
     topLevelDomain = topDomain;
     numUsers = 0;
+    geoLocation = new GeoLocation(40.935,-74.1176);
 }
-
-
 
 // Specify website URL
 // Register an old website
-public Website(String domainName, String topDomain, int numPeople){
+public Website(String domainName, String topDomain, long numPeople, GeoLocation g){
     domain = domainName;
     topLevelDomain = topDomain;
     numUsers = numPeople;
+    geoLocation = g;
     }
 
+public GeoLocation getLocation(){
+    return geoLocation;
+}
     // Method to fetch data 
     public void fetchData(String api)
  {
@@ -84,17 +89,25 @@ public Website(String domainName, String topDomain, int numPeople){
         //HERE EVERY VARIABLE IS LOCAL
         //LOCAL VARIABLE USE TYPE ONLY 
         //REFERENCE VARIABLES CLASS TYPE
-        Website website = new Website("randomuser", "me"); // Create an instance of Website
-        website.fetchData("api"); // Call the instance method
+        Website website1 = new Website("ip-api", "com"); // Create an instance of Website
+        website1.fetchData("json"); // Call the instance method
         
-        Website website2 = new Website();
-        System.out.println(website2);
-        
-        Website website3 = new Website("google", "com", 100000000);
-        System.out.println(website3);
+        Website google = new Website();
+        System.out.println("My location to Google: " + google.getLocation().distanceFrom(website1.getLocation()) + " miles");
+      
+        Website aws = new Website("aws", "com", 1000000, new GeoLocation(38.9339,77.1773));
 
-        Website website4 = new Website("ip-api", "com");
+        Website microsoft = new Website("Microsoft Azure", "com", 100000000, new GeoLocation(36.6646, 78.3897));
+
+        Website meta = new Website("Meta", "com", 320000000, new GeoLocation(44.2995, 120.8346));
         
+        System.out.println("Google to aws: " + google.getLocation().distanceFrom(aws.getLocation()) + " miles");
+        System.out.println("Google to Meta: " + google.getLocation().distanceFrom(meta.getLocation()) + " miles");
+        System.out.println("Google to Microsoft: " + google.getLocation().distanceFrom(microsoft.getLocation()) + " miles");
+
+        System.out.println("Meta to Microsoft Azure: " + meta.getLocation().distanceFrom(microsoft.getLocation()) + " miles");
+        System.out.println("Meta to AWS: " + meta.getLocation().distanceFrom(aws.getLocation()) + " miles");
+
     }
 }
 
