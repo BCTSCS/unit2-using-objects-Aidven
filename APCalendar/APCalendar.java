@@ -1,5 +1,6 @@
+package APCalendar;
 
-public class AP_Calendar {
+public class APCalendar {
 
     /**
      * Returns true if year is a leap year and false otherwise.
@@ -80,7 +81,7 @@ public class AP_Calendar {
 
     public static void main(String[] args){
         
-        AP_Calendar calendar = new AP_Calendar();
+        APCalendar calendar = new APCalendar();
 
         
         System.out.println("Is 2024 a leap year: " + calendar.isLeapYear(2024)); 
